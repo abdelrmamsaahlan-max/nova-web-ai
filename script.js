@@ -1,8 +1,9 @@
 const restyle=document.createElement('link');restyle.rel='stylesheet';restyle.href='styles-v2.css';document.head.appendChild(restyle);
+const commerce=document.createElement('script');commerce.src='commerce.js';document.body.appendChild(commerce);
 const header=document.querySelector('.site-header'),menu=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links'),progress=document.querySelector('.progress');
 window.addEventListener('scroll',()=>{header?.classList.toggle('scrolled',scrollY>12);const max=document.documentElement.scrollHeight-innerHeight;if(progress)progress.style.width=`${max>0?scrollY/max*100:0}%`},{passive:true});
 menu?.addEventListener('click',()=>{const open=nav?.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu')});
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const form=document.getElementById('contactForm'),status=document.querySelector('.form-status');form?.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form),name=(data.get('name')||'there').toString().trim();if(status)status.textContent=`Thanks, ${name||'there'} — your project request is ready. We'll get back to you soon.`;form.reset()});
+const form=document.getElementById('contactForm'),status=document.querySelector('.form-status');form?.addEventListener('submit',e=>{const data=new FormData(form),name=(data.get('name')||'there').toString().trim();if(status)status.textContent=`Thanks, ${name||'there'} — your project request is being sent to Nova.`});
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
