@@ -1,0 +1,23 @@
+/* Nova 3D motion layer */
+:root{--nova-blue:#2563eb;--nova-cyan:#60a5fa;--nova-ink:#07111f}
+body{perspective:1200px}
+.hero-visual{perspective:1400px}
+.browser-card{transform-style:preserve-3d;animation:novaFloat 7s ease-in-out infinite}
+.browser-card:before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.5),transparent 35%,transparent 70%,rgba(37,99,235,.08));z-index:2}
+.hero-visual:after{content:'';position:absolute;width:260px;height:70px;background:rgba(37,99,235,.12);filter:blur(35px);border-radius:50%;bottom:45px;right:10%;transform:rotate(-8deg);z-index:-1;animation:novaShadow 7s ease-in-out infinite}
+.float-card{transform:translateZ(55px);animation:novaFloatSmall 5s ease-in-out infinite}.design{animation-delay:-2s}
+.service-card,.project,.price-card{transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease}
+.service-card:hover{transform:perspective(900px) rotateX(4deg) rotateY(-4deg) translateY(-10px);box-shadow:18px 25px 45px rgba(7,17,31,.13)}
+.project:hover{transform:perspective(1000px) rotateX(3deg) rotateY(-3deg) translateY(-10px);box-shadow:15px 25px 45px rgba(7,17,31,.13)}
+.project-preview{transform-style:preserve-3d}.project-preview:after{content:'';position:absolute;inset:12px;border:1px solid rgba(255,255,255,.22);pointer-events:none;transform:translateZ(25px);transition:.4s}.project:hover .project-preview:after{transform:translateZ(45px) scale(.96)}
+.art-orb{animation:novaOrb 6s ease-in-out infinite;transform-style:preserve-3d}.studio-circle{animation:novaSpin 16s linear infinite}
+.vertex{transform:translateZ(30px);transition:.4s}.project:hover .vertex{transform:translateZ(65px) rotate(-3deg)}
+.why-list>div{transition:transform .3s ease,padding-left .3s ease}.why-list>div:hover{transform:translateX(8px);padding-left:10px}
+.button{position:relative;overflow:hidden}.button:after{content:'';position:absolute;top:-80%;left:-35%;width:25%;height:260%;background:rgba(255,255,255,.2);transform:rotate(25deg);transition:left .55s ease}.button:hover:after{left:125%}
+@keyframes novaFloat{0%,100%{transform:rotateX(2deg) rotateY(-5deg) translateY(0)}50%{transform:rotateX(1deg) rotateY(-2deg) translateY(-13px)}}
+@keyframes novaFloatSmall{0%,100%{transform:translateZ(55px) translateY(0)}50%{transform:translateZ(55px) translateY(-9px)}}
+@keyframes novaShadow{0%,100%{transform:scale(.95) rotate(-8deg);opacity:.65}50%{transform:scale(1.08) rotate(-8deg);opacity:.35}}
+@keyframes novaOrb{0%,100%{transform:translateZ(15px) translateY(0) scale(1)}50%{transform:translateZ(45px) translateY(-8px) scale(1.06)}}
+@keyframes novaSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:900px){.service-card:hover,.project:hover{transform:translateY(-5px)}}
