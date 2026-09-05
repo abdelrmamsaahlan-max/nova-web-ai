@@ -1,11 +1,51 @@
-const legacyPricing=document.querySelector('#pricing .pricing-grid');if(legacyPricing){legacyPricing.innerHTML='';legacyPricing.id='pricing-catalog';}
-const restyle=document.createElement('link');restyle.rel='stylesheet';restyle.href='styles-v2.css';document.head.appendChild(restyle);
-const theme=document.createElement('style');theme.textContent=`html,body{background:#050505!important;color:#f5f5f5!important}body{color-scheme:dark!important}body:before{background:radial-gradient(circle at 15% 15%,rgba(255,106,0,.14),transparent 28%),radial-gradient(circle at 85% 35%,rgba(255,106,0,.09),transparent 25%),#050505!important}body:after{background-image:linear-gradient(rgba(255,106,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,106,0,.035) 1px,transparent 1px)!important}.site-header{background:rgba(5,5,5,.9)!important;border-color:rgba(255,255,255,.08)!important}.nav-links>a:not(.nav-cta),.eyebrow,.trust-line{color:#999!important}.nav-links>a:not(.nav-cta):hover{color:#ff6a00!important}.nav-cta{background:#ff6a00!important;color:#050505!important}.brand,.hero h1,.hero h1 strong,.section-head h2,.why h2,.faq h2,.contact h2,.service-card h3,.project-info b,.price-card h3,.price-card li,.faq-list summary{color:#fff!important}.brand-mark{background:#ff6a00!important;color:#050505!important}.hero h1 span,h1 span,h2 span,.section-head h2 span,.why h2 span,.faq h2 span,.contact h2 span{color:#ff6a00!important}.hero p,.section-head p,.service-card p,.step p,.project-info span,.why p,.faq p,.contact-copy p{color:#999!important}.primary{background:#ff6a00!important;color:#050505!important}.primary:hover{background:#ff8533!important}.secondary{background:#0d0d0d!important;color:#fff!important;border-color:rgba(255,255,255,.15)!important}.secondary:hover{border-color:#ff6a00!important;color:#ff6a00!important}.browser-card,.float-card{background:#101010!important;border-color:rgba(255,255,255,.1)!important}.browser-bar{background:#151515!important}.mock-page{background:#090909!important}.mock-nav b,.mock-hero strong{color:#fff!important}.mock-nav em,.mock-btn,.art-orb{background:#ff6a00!important}.mock-hero mark{color:#ff6a00!important}.feature-strip{background:#0b0b0b!important;border-color:rgba(255,255,255,.1)!important}.feature-strip div{border-color:rgba(255,255,255,.1)!important}.feature-strip span,.service-icon,.service-card a,.step span,.arrow,.work-footer a,.why-list span,.text-link,.text-link span,.price-card li:before,.recommend{color:#ff6a00!important}.service-card,.project,.price-card,.faq-list details{background:#0d0d0d!important;border-color:rgba(255,255,255,.1)!important;color:#fff!important}.service-card.featured,.price-card.recommended{background:#111!important;border-color:rgba(255,106,0,.45)!important}.process{background:#080808!important;border-color:rgba(255,255,255,.07)!important}.why{background:#090909!important;color:#fff!important;border-color:rgba(255,106,0,.12)!important}.faq{background:#050505!important;color:#fff!important;border-color:rgba(255,255,255,.08)!important}.faq-list details{background:#0c0c0c!important}.contact{background:#070707!important}.contact-box{background:#0d0d0d!important;border-color:rgba(255,106,0,.25)!important}.contact-note{background:#151515!important;border-color:rgba(255,255,255,.08)!important}.contact-form input,.contact-form select,.contact-form textarea{background:#080808!important;color:#fff!important;border-color:rgba(255,255,255,.13)!important}.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#ff6a00!important;box-shadow:0 0 0 3px rgba(255,106,0,.12)!important}footer{background:#030303!important;color:#777!important;border-color:rgba(255,255,255,.08)!important}.shop-card,.cart-panel{background:#0d0d0d!important;color:#fff!important;border-color:rgba(255,255,255,.1)!important}.cart-button{background:#ff6a00!important;color:#050505!important}.cart-drawer{color:#fff!important}.live-demo{color:#ff6a00!important}.progress{background:#ff6a00!important}.pulse{background:#ff6a00!important}`;document.head.appendChild(theme);
-const commerce=document.createElement('script');commerce.src='commerce.js';document.body.appendChild(commerce);
-const header=document.querySelector('.site-header'),menu=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links'),progress=document.querySelector('.progress');
-window.addEventListener('scroll',()=>{header?.classList.toggle('scrolled',scrollY>12);const max=document.documentElement.scrollHeight-innerHeight;if(progress)progress.style.width=`${max>0?scrollY/max*100:0}%`},{passive:true});
-menu?.addEventListener('click',()=>{const open=nav?.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu')});
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const form=document.getElementById('contactForm'),status=document.querySelector('.form-status');form?.addEventListener('submit',e=>{const data=new FormData(form),name=(data.get('name')||'there').toString().trim();if(status)status.textContent=`Thanks, ${name||'there'} — your project request is being sent to Nova.`});
-document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
+const legacyPricing=document.querySelector('#pricing .pricing-grid');
+if(legacyPricing){legacyPricing.innerHTML='';legacyPricing.id='pricing-catalog';}
+
+const commerce=document.createElement('script');
+commerce.src='commerce.js';
+document.body.appendChild(commerce);
+
+const header=document.querySelector('.site-header');
+const menu=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav-links');
+const progress=document.querySelector('.progress');
+
+window.addEventListener('scroll',()=>{
+  header?.classList.toggle('scrolled',scrollY>12);
+  const max=document.documentElement.scrollHeight-innerHeight;
+  if(progress) progress.style.width=`${max>0?scrollY/max*100:0}%`;
+},{passive:true});
+
+menu?.addEventListener('click',()=>{
+  const open=nav?.classList.toggle('open');
+  menu.setAttribute('aria-expanded',String(open));
+  menu.setAttribute('aria-label',open?'Close menu':'Open menu');
+});
+
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+  nav?.classList.remove('open');
+  menu?.setAttribute('aria-expanded','false');
+}));
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('visible');
+    observer.unobserve(e.target);
+  }
+}),{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const form=document.getElementById('contactForm');
+const status=document.querySelector('.form-status');
+form?.addEventListener('submit',e=>{
+  const data=new FormData(form);
+  const name=(data.get('name')||'there').toString().trim();
+  if(status) status.textContent=`Thanks, ${name||'there'} — your project request is being sent to Nova.`;
+});
+
+document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{
+  if(d.open) document.querySelectorAll('.faq-list details').forEach(other=>{
+    if(other!==d) other.open=false;
+  });
+}));
