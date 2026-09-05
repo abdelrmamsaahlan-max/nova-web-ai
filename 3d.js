@@ -1,4 +1,28 @@
-const premium=document.createElement('link');premium.rel='stylesheet';premium.href='pro.css';document.head.appendChild(premium);
-const cards=document.querySelectorAll('.service-card,.project,.price-card');
-cards.forEach(card=>{card.addEventListener('pointermove',e=>{if(matchMedia('(max-width:900px)').matches)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(1000px) rotateX(${-y*4}deg) rotateY(${x*5}deg) translateY(-8px)`});card.addEventListener('pointerleave',()=>card.style.transform='')});
-const hero=document.querySelector('.hero-visual');hero?.addEventListener('pointermove',e=>{if(matchMedia('(max-width:900px)').matches)return;const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;const browser=hero.querySelector('.browser-card');if(browser)browser.style.transform=`perspective(1400px) rotateX(${2-y*5}deg) rotateY(${-5+x*9}deg) translate3d(${x*5}px,${y*5}px,20px)`});hero?.addEventListener('pointerleave',()=>{const browser=hero.querySelector('.browser-card');if(browser)browser.style.transform='' });
+/* Nova Web AI — interaction layer intentionally kept stable on first paint. */
+(() => {
+  const cards = document.querySelectorAll('.service-card,.project,.price-card');
+  cards.forEach(card => {
+    card.addEventListener('pointermove', e => {
+      if (matchMedia('(max-width:900px)').matches) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX-r.left)/r.width-.5;
+      const y = (e.clientY-r.top)/r.height-.5;
+      card.style.transform = `perspective(1000px) rotateX(${-y*2}deg) rotateY(${x*3}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  const hero = document.querySelector('.hero-visual');
+  hero?.addEventListener('pointermove', e => {
+    if (matchMedia('(max-width:900px)').matches) return;
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width-.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    const browser = hero.querySelector('.browser-card');
+    if (browser) browser.style.transform = `perspective(1400px) rotateX(${2-y*2}deg) rotateY(${-2+x*4}deg)`;
+  });
+  hero?.addEventListener('pointerleave', () => {
+    const browser = hero.querySelector('.browser-card');
+    if (browser) browser.style.transform = '';
+  });
+})();
