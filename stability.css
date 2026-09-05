@@ -1,0 +1,10 @@
+/* Nova Web AI — stable runtime layer. This intentionally disables page-level entrance/3D motion. */
+html,body{width:100%;min-height:100%;margin:0;padding:0;overflow-x:hidden!important;overflow-y:auto!important;transform:none!important;perspective:none!important;scroll-behavior:auto!important}
+body,main,.site-header,footer{position:relative;transform:none!important}
+.site-header{position:fixed!important;top:0;left:0;right:0;z-index:100}
+.reveal,.reveal.visible,.hero,.feature-strip,.section,.process,.faq,.contact{opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important}
+.browser-card,.float-card,.service-card,.project,.price-card,.art-orb,.studio-circle,.orbit{animation:none!important}
+.browser-card{transform:none!important}
+.float-card{transform:none!important}
+.cursor-glow{display:none!important}
+*,*:before,*:after{animation-duration:0s!important}
