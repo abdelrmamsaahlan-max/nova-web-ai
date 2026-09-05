@@ -1,9 +1,6 @@
+/* Nova Web AI — stable core interactions */
 const legacyPricing=document.querySelector('#pricing .pricing-grid');
 if(legacyPricing){legacyPricing.innerHTML='';legacyPricing.id='pricing-catalog';}
-
-const commerce=document.createElement('script');
-commerce.src='commerce.js';
-document.body.appendChild(commerce);
 
 const header=document.querySelector('.site-header');
 const menu=document.querySelector('.menu-toggle');
@@ -27,14 +24,12 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   menu?.setAttribute('aria-expanded','false');
 }));
 
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){
-    e.target.classList.add('visible');
-    observer.unobserve(e.target);
-  }
-}),{threshold:.12});
-
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+/* Do not hide content waiting for scroll/reveal JavaScript. */
+document.querySelectorAll('.reveal').forEach(el=>{
+  el.classList.add('visible');
+  el.style.opacity='1';
+  el.style.transform='none';
+});
 
 const form=document.getElementById('contactForm');
 const status=document.querySelector('.form-status');
@@ -49,3 +44,8 @@ document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('to
     if(other!==d) other.open=false;
   });
 }));
+
+const commerce=document.createElement('script');
+commerce.src='commerce.js';
+commerce.defer=true;
+document.head.appendChild(commerce);
