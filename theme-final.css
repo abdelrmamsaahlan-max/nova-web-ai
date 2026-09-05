@@ -1,6 +1,6 @@
 /* Nova Web AI — final black + orange theme. Loaded last on purpose. */
 :root{color-scheme:dark!important;--nova-orange:#ff6a00;--nova-orange-bright:#ff8533;--nova-black:#050505;--nova-panel:#0d0d0d;--nova-panel-2:#111;--nova-text:#fff;--nova-muted:#999}
-html,body{background:#050505!important;color:#fff!important}
+html,body{background:#050505!important;color:#fff!important;overflow-x:clip!important}
 body{background-color:#050505!important;color:#fff!important}
 body:before{background:radial-gradient(circle at 15% 15%,rgba(255,106,0,.14),transparent 28%),radial-gradient(circle at 85% 35%,rgba(255,106,0,.09),transparent 25%),#050505!important}
 body:after{background-image:linear-gradient(rgba(255,106,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,106,0,.035) 1px,transparent 1px)!important}
@@ -24,5 +24,9 @@ body:after{background-image:linear-gradient(rgba(255,106,0,.035) 1px,transparent
 .contact{background:#070707!important}.contact-box{background:#0d0d0d!important;border-color:rgba(255,106,0,.28)!important}.contact-form input,.contact-form select,.contact-form textarea{background:#080808!important;color:#fff!important;border-color:rgba(255,255,255,.14)!important}.contact-form input::placeholder,.contact-form textarea::placeholder{color:#666!important}.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#ff6a00!important;box-shadow:0 0 0 3px rgba(255,106,0,.12)!important}.contact-form option{background:#0d0d0d!important;color:#fff!important}
 footer{background:#030303!important;color:#777!important;border-color:rgba(255,255,255,.08)!important}
 .shop-card,.cart-panel,.cart-drawer{background:#0d0d0d!important;color:#fff!important;border-color:rgba(255,255,255,.1)!important}.cart-button{background:#ff6a00!important;color:#050505!important}.cart-count{background:#050505!important;color:#ff6a00!important}
-.menu-toggle span{background:#fff!important}.reveal{color:#fff!important}
+.menu-toggle span{background:#fff!important}
+/* Prevent the page itself from visibly sliding in on first paint. */
+.reveal,.reveal.visible{opacity:1!important;transform:none!important;transition:none!important}
+/* Prevent 3D perspective/transforms from shifting the document viewport. */
+html{perspective:none!important}body{perspective:none!important}
 @media(max-width:900px){.site-header{background:rgba(5,5,5,.97)!important}.nav-links{background:#080808!important;border-color:rgba(255,255,255,.1)!important}.nav-links a{color:#fff!important}.nav-links a:hover{color:#ff6a00!important}}
